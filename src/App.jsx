@@ -8,12 +8,18 @@ import Add from "./components/Add.jsx";
 import { theme } from "./theme";
 
 function App() {
+  const [mode, setMode] = useState("light");
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
   return (
-    <ThemeProvider theme={theme}>
-      <Box>
+    <ThemeProvider theme={darkTheme}>
+      <Box bgcolor={"background.default"} color={"text.primary"}>
         <Navbar />
         <Stack direction="row" justifyContent="space-between">
-          <Sidebar/>
+          <Sidebar mode={mode} setMode={setMode} />
           <Feed />
           <Rightbar />
         </Stack>
